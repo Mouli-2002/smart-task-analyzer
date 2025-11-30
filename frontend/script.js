@@ -72,7 +72,7 @@ function displayTasks(tasks) {
 // ----------------------
 // Analyze Tasks
 // ----------------------
-analyzeBtn.addEventListener('click', () => {
+/*analyzeBtn.addEventListener('click', () => {
   // Copy taskList and sort by importance (high to low) and due date (earliest first)
   const analyzed = [...taskList].sort((a, b) => {
     // Sort by importance first
@@ -83,6 +83,40 @@ analyzeBtn.addEventListener('click', () => {
   });
 
   // Display the sorted tasks
+  displayTasks(analyzed);
+});*/
+analyzeBtn.addEventListener('click', () => {
+  
+  let tempList = [...taskList];  // copy list
+  let analyzed = [];
+
+  while (tempList.length > 0) {
+    let bestIndex = 0;
+
+    for (let i = 1; i < tempList.length; i++) {
+      let current = tempList[i];
+      let best = tempList[bestIndex];
+
+      // Compare importance first
+      if (current.importance > best.importance) {
+        bestIndex = i;
+      }
+
+      // If importance same → compare date
+      else if (current.importance === best.importance) {
+        if (new Date(current.due_date) < new Date(best.due_date)) {
+          bestIndex = i;
+        }
+      }
+    }
+
+    // Add best task to analyzed list
+    analyzed.push(tempList[bestIndex]);
+
+    // Remove it from temp
+    tempList.splice(bestIndex, 1);
+  }
+
   displayTasks(analyzed);
 });
 
