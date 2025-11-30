@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Task Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Task Analyzer</h1>
+
+    <form id="taskForm">
+      <input type="text" id="title" placeholder="Task Title" required>
+      <input type="date" id="due_date" required>
+      <input type="number" id="estimated_hours" placeholder="Estimated Hours" min="1" required>
+      <select id="importance">
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
+      </select>
+      <button type="submit">Add Task</button>
+    </form>
+
+    <button id="analyzeBtn">Analyze Tasks</button>
+
+    <h2>Task List</h2>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
